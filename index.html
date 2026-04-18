@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rizonex — Where Safety Meets Precision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blk:#000;--i1:#0c0c0c;--i2:#141414;--i3:#1e1e1e;--i4:#282828;
+  --m1:#444;--m2:#666;--m3:#999;--m4:#bbb;--m5:#ddd;
+  --wht:#fff;
+  --au:#c9a84c;--au2:#e8c96a;--aul:rgba(201,168,76,.15);--aub:rgba(201,168,76,.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--blk);color:var(--wht);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.65}
+*{cursor:none}
+#dot{position:fixed;width:6px;height:6px;background:#fff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s}
+#ring{position:fixed;width:32px;height:32px;border:1px solid rgba(255,255,255,.22);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .18s,height .18s,border-color .18s}
+body:has(a:hover) #dot,body:has(button:hover) #dot{width:3px;height:3px;background:var(--au)}
+body:has(a:hover) #ring,body:has(button:hover) #ring{width:44px;height:44px;border-color:rgba(201,168,76,.4)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:70px;display:flex;align-items:center;padding:0 3rem;transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+nav.on{background:rgba(0,0,0,.93);backdrop-filter:blur(18px);border-bottom-color:rgba(255,255,255,.06)}
+.nw{max-width:1300px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nl-brand{display:flex;flex-direction:column;gap:1px}
+.nl-eye{font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--au)}
+.nl-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--wht);letter-spacing:.06em;line-height:1;font-weight:400}
+.nl-sub{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--m2);margin-top:1px}
+.nl-links{display:flex;gap:2.5rem}
+.nl-links a{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--m3);text-decoration:none;transition:color .2s;position:relative}
+.nl-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--au);transition:width .28s}
+.nl-links a:hover{color:var(--wht)}
+.nl-links a:hover::after{width:100%}
+.nl-cta{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;background:var(--wht);color:var(--blk);padding:.625rem 1.75rem;text-decoration:none;font-weight:500;transition:background .2s}
+.nl-cta:hover{background:var(--au)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;padding-top:70px}
+.hero-scene{position:absolute;inset:0;width:100%;height:100%}
+
+
+.hero-c{
+  margin-top:auto;        /* ← this absorbs all space above, pinning to bottom */
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:0;
+  width:100%;
+  max-width:1300px;
+  padding:0 3rem 6rem;
+  z-index:4;
+  display:grid;
+  grid-template-columns:1fr 430px;
+  gap:5.5rem;
+  align-items:end;
+}
+.h-eye{display:flex;align-items:center;gap:.875rem;margin-bottom:2.5rem}
+.h-eye-line{width:28px;height:1px;background:var(--au)}
+.h-eye span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--au)}
+.h-h1{font-family:'Cormorant',serif;font-weight:300;font-size:clamp(3.5rem,5.5vw,6rem);line-height:.97;letter-spacing:-.02em;color:var(--wht);margin-bottom:2.25rem}
+.h-h1 em{font-style:italic;color:var(--m5)}
+.h-h1 strong{display:block;font-weight:300;color:var(--m4)}
+.h-desc{font-size:.9375rem;line-height:1.85;color:var(--m2);max-width:460px;margin-bottom:2.75rem;font-weight:300}
+.h-btns{display:flex;align-items:center;gap:2rem}
+.h-cta{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blk);background:var(--wht);padding:.875rem 2.5rem;text-decoration:none;font-weight:500;transition:background .2s}
+.h-cta:hover{background:var(--au)}
+.h-link{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--m3);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s}
+.h-link span{transition:transform .22s}
+.h-link:hover{color:var(--wht)}
+.h-link:hover span{transform:translateX(4px)}
+/* hero card */
+.hk{background:rgba(10,10,10,.88);border:1px solid rgba(255,255,255,.1);padding:2.25rem;backdrop-filter:blur(14px);position:relative}
+.hk::before{content:'';position:absolute;top:-1px;left:1.75rem;right:1.75rem;height:1px;background:var(--au)}
+.hk-lbl{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--au);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
+.hk-lbl::before{content:'';width:12px;height:1px;background:var(--au)}
+.hk-title{font-family:'Cormorant Garamond',serif;font-size:1.375rem;color:var(--wht);margin-bottom:1.5rem;letter-spacing:.02em}
+.hk-row{padding:.875rem 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:.875rem;align-items:flex-start}
+.hk-row:last-of-type{border-bottom:none}
+.hk-dot{width:5px;height:5px;border-radius:50%;border:1px solid var(--au);flex-shrink:0;margin-top:5px}
+.hk-n{font-size:12px;font-weight:500;color:var(--wht);margin-bottom:2px}
+.hk-d{font-size:11px;color:var(--m2);line-height:1.55;font-weight:300}
+.hk-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1.25rem;background:rgba(255,255,255,.06)}
+.hk-b{background:var(--i2);padding:.875rem .5rem;text-align:center}
+.hk-ba{font-family:'Cormorant',serif;font-size:1.5rem;font-weight:300;color:var(--wht);display:block;line-height:1;margin-bottom:3px}
+.hk-bb{font-size:8px;letter-spacing:.17em;text-transform:uppercase;color:var(--m2)}
+
+/* MARQUEE */
+.mq{background:var(--i2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:.875rem 0;overflow:hidden}
+.mq-t{display:inline-flex;animation:mq 26s linear infinite;white-space:nowrap}
+.mq-i{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--m2);padding:0 2rem;display:inline-flex;align-items:center;gap:2rem}
+.mq-d{width:3px;height:3px;border-radius:50%;background:var(--au);opacity:.65;flex-shrink:0}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sec{padding:7rem 3rem;position:relative;overflow:hidden}
+.ctr{max-width:1300px;margin:0 auto;position:relative;z-index:2}
+.ew{display:flex;align-items:center;gap:.875rem;margin-bottom:1.5rem}
+.ew-l{width:20px;height:1px;background:var(--au)}
+.ew span{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--au)}
+.st{font-family:'Cormorant',serif;font-weight:300;font-size:clamp(2.25rem,4vw,3.75rem);color:var(--wht);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.25rem}
+.st em{font-style:italic}
+.sb{font-size:.9rem;line-height:1.85;color:var(--m2);max-width:520px;font-weight:300}
+
+/* BG scene helper */
+
+
+/* SERVICES */
+.svc-hdr{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06)}
+.sc{background:var(--i1);padding:2.25rem;position:relative;transition:background .28s}
+.sc:hover{background:var(--i2)}
+.sc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--au);transition:width .38s}
+.sc:hover::after{width:100%}
+.sc-n{font-family:'Cormorant',serif;font-size:2.75rem;font-weight:300;color:rgba(201,168,76,.35);line-height:1;margin-bottom:1.25rem;letter-spacing:-.04em}
+.sc-t{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--wht);margin-bottom:.75rem;line-height:1.3;letter-spacing:.01em}
+.sc-d{font-size:12.5px;line-height:1.8;color:var(--m2);margin-bottom:1.375rem;font-weight:300}
+.sc-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.sc-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:.275rem .625rem;transition:border-color .2s}
+.sc:hover .sc-tag{border-color:var(--aul)}
+
+/* STATEMENT */
+.stmt{background:var(--wht);padding:7rem 3rem;position:relative;overflow:hidden}
+.stmt-bg{position:absolute;inset:0}
+.stmt-bg svg{width:100%;height:100%;display:block}
+.stmt-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;position:relative;z-index:2}
+.sq{font-family:'Cormorant',serif;font-size:clamp(2rem,3.5vw,3.25rem);font-weight:300;color:var(--blk);line-height:1.2;letter-spacing:-.02em}
+.sq em{font-style:italic}
+.sq-at{margin-top:2rem;display:flex;align-items:center;gap:.875rem}
+.sq-atl{width:20px;height:1px;background:var(--au)}
+.sq-at span{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#666}
+.sp-list{}
+.sp{display:flex;gap:1.375rem;align-items:flex-start;padding:1.625rem 0;border-bottom:1px solid #e0e0e0}
+.sp:first-child{border-top:1px solid #e0e0e0}
+.sp-n{font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#b0b0b0;line-height:1;flex-shrink:0;padding-top:2px}
+.sp-t{font-size:13.5px;font-weight:500;color:var(--blk);margin-bottom:3px}
+.sp-x{font-size:12px;color:#666;line-height:1.65;font-weight:300}
+
+/* TEAM */
+.team-hdr{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:transparent;border:1px solid rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.tc{background:var(--i1);overflow:hidden;transition:all .3s ease;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.06)}
+.tc:last-child{border-right:none}
+.tc:hover{background:var(--i2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.6);z-index:2}
+.tc-av{height:300px;position:relative;overflow:hidden;flex-shrink:0}
+.tc-av svg{width:100%;height:100%;display:block}
+.tc-i{padding:1.5rem 1.625rem 1.625rem;flex:1;display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,.06)}
+.tc-n{font-family:'Cormorant Garamond',serif;font-size:1.125rem;color:var(--wht);margin-bottom:4px;letter-spacing:.01em;line-height:1.25;font-weight:400}
+.tc-r{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--au);margin-bottom:.875rem;line-height:1.5;font-weight:500}
+.tc-b{font-size:11.5px;line-height:1.75;color:var(--m2);margin-bottom:1.125rem;font-weight:300;flex:1}
+.tc-cr{display:flex;flex-wrap:wrap;gap:.275rem;margin-bottom:1rem}
+.tc-c{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);color:var(--m3);padding:.22rem .55rem}
+.tc:hover .tc-c{border-color:var(--aul)}
+.tc-lk{display:inline-flex;align-items:center;gap:.4rem;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--m3);text-decoration:none;transition:color .2s;margin-top:auto}
+.tc-lk svg{width:11px;height:11px;fill:currentColor}
+.tc-lk:hover{color:var(--au)}
+
+/* APPROACH */
+.ap-layout{display:grid;grid-template-columns:1fr 360px;gap:6rem;align-items:start}
+.ap-steps{margin-top:2.5rem}
+.ap-s{display:flex;gap:2.25rem;padding:2.25rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ap-s:last-child{border-bottom:none}
+.ap-sn{font-family:'Cormorant',serif;font-size:2.5rem;font-weight:300;color:rgba(201,168,76,.3);flex-shrink:0;line-height:1;padding-top:3px;transition:color .28s}
+.ap-s:hover .ap-sn{color:var(--au)}
+.ap-st{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--wht);margin-bottom:.5rem;letter-spacing:.01em}
+.ap-sx{font-size:13px;line-height:1.8;color:var(--m2);font-weight:300}
+.ap-box{background:var(--i2);border:1px solid rgba(255,255,255,.06);padding:2.25rem;position:sticky;top:88px}
+.ap-box::before{content:'';display:block;width:100%;height:1px;background:linear-gradient(90deg,var(--au),transparent);margin-bottom:1.75rem}
+.ap-bt{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--wht);margin-bottom:.375rem;letter-spacing:.01em}
+.ap-bs{font-size:11px;color:var(--m2);margin-bottom:1.5rem;font-weight:300}
+.ap-br{display:flex;gap:.875rem;align-items:flex-start;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ap-br:last-child{border-bottom:none}
+.ap-bd{width:8px;height:1px;background:var(--au);flex-shrink:0;margin-top:8px}
+.ap-bx{font-size:12px;color:var(--m3);line-height:1.55;font-weight:300}
+
+/* WHY */
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:start}
+.why-stat{border:1px solid rgba(201,168,76,.2);padding:2.75rem;background:var(--i2);position:relative;margin-top:2.5rem}
+.why-stat::before{content:'';position:absolute;top:-1px;left:2rem;width:52px;height:1px;background:var(--au)}
+.ws-n{font-family:'Cormorant',serif;font-size:5.5rem;font-weight:300;color:var(--au2);line-height:.85;letter-spacing:-.05em;margin-bottom:1rem}
+.ws-t{font-size:13px;color:var(--m2);line-height:1.75;font-weight:300}
+.why-q{background:var(--i2);border-left:1px solid var(--au);padding:1.875rem 1.875rem 1.875rem 2.25rem;margin-top:1.75rem}
+.wq-mk{font-family:'Cormorant',serif;font-size:3.5rem;color:rgba(255,255,255,.1);line-height:.7;margin-bottom:.5rem}
+.wq-tx{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--wht);line-height:1.65;font-style:italic;margin-bottom:.875rem}
+.wq-au{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--au)}
+.diffs{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);margin-top:2.5rem}
+.df{background:var(--i1);padding:1.625rem;display:flex;gap:1.125rem;align-items:flex-start;transition:background .25s;position:relative}
+.df:hover{background:var(--i2)}
+.df::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .25s}
+.df:hover::before{background:var(--au)}
+.df-ic{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .25s}
+.df:hover .df-ic{border-color:var(--aul)}
+.df-ic svg{width:15px;height:15px;stroke:var(--wht);stroke-width:1.5;fill:none;stroke-linecap:round;transition:stroke .25s}
+.df:hover .df-ic svg{stroke:var(--au)}
+.df-t{font-size:13px;font-weight:500;color:var(--wht);margin-bottom:.375rem}
+.df-x{font-size:12px;line-height:1.65;color:var(--m2);font-weight:300}
+
+/* REC */
+.rec{background:var(--i2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:2.5rem 3rem}
+.rec-in{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center}
+.rec-lbl{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--m1)}
+.rec-dv{width:1px;height:16px;background:rgba(255,255,255,.08)}
+.rec-nm{font-size:12.5px;color:var(--m2);letter-spacing:.1em;cursor:default;transition:color .2s}
+.rec-nm:hover{color:var(--wht)}
+
+/* CONTACT */
+.con-layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 490px;gap:6.5rem;align-items:start;position:relative;z-index:2}
+.con-prom{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);margin-top:2.5rem}
+.cp{display:flex;gap:1.125rem;align-items:flex-start;background:var(--i1);padding:1.375rem;transition:background .25s}
+.cp:hover{background:var(--i2)}
+.cp-ic{width:32px;height:32px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .25s}
+.cp:hover .cp-ic{border-color:var(--aul)}
+.cp-ic svg{width:13px;height:13px;stroke:var(--wht);stroke-width:1.6;fill:none;stroke-linecap:round}
+.cp-s{font-size:12.5px;font-weight:500;color:var(--wht);margin-bottom:2px}
+.cp-x{font-size:11.5px;color:var(--m2);font-weight:300}
+.cf{background:var(--i2);border:1px solid rgba(255,255,255,.07);padding:2.75rem;position:relative}
+.cf::before{content:'';position:absolute;top:-1px;left:2.75rem;right:2.75rem;height:1px;background:linear-gradient(90deg,var(--au),transparent)}
+.cf-t{font-family:'Cormorant',serif;font-size:2.25rem;font-weight:300;color:var(--wht);letter-spacing:-.02em;margin-bottom:.375rem;line-height:1.1}
+.cf-s{font-size:12px;color:var(--m2);margin-bottom:2rem;font-weight:300}
+.fg{display:flex;flex-direction:column;gap:.375rem;margin-bottom:.875rem}
+.fg label{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--m3)}
+.fg input,.fg select,.fg textarea{background:var(--i1);border:1px solid rgba(255,255,255,.1);padding:.75rem 1rem;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--wht);outline:none;transition:border-color .22s;width:100%}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--m1)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(201,168,76,.4)}
+.fg select option{background:var(--i2)}
+.fg textarea{min-height:88px;resize:vertical}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.cf-btn{width:100%;background:var(--wht);color:var(--blk);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;border:none;padding:1.125rem;transition:background .2s;margin-top:.625rem}
+.cf-btn:hover{background:var(--au)}
+.cf-note{font-size:10px;color:var(--m1);text-align:center;margin-top:1rem;letter-spacing:.04em}
+
+/* FOOTER */
+footer{background:var(--i2);border-top:1px solid rgba(255,255,255,.06);padding:5rem 3rem 2.5rem}
+.ft-in{max-width:1300px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+.ft-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--wht);letter-spacing:.03em;margin-bottom:.75rem}
+.ft-tag{font-size:12px;color:var(--m1);line-height:1.78;max-width:260px;font-weight:300}
+.ft-col h4{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--au);margin-bottom:1.25rem}
+.ft-col a{display:block;font-size:12.5px;color:var(--m2);text-decoration:none;margin-bottom:.5rem;transition:color .2s;font-weight:300}
+.ft-col a:hover{color:var(--wht)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.ft-copy{font-size:11.5px;color:var(--m1);font-weight:300}
+.ft-legal{display:flex;gap:2rem}
+.ft-legal a{font-size:11.5px;color:var(--m1);text-decoration:none;transition:color .2s;font-weight:300}
+.ft-legal a:hover{color:var(--m3)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1080px){
+  .svc-hdr,.stmt-in,.team-hdr,.ap-layout,.why-layout,.con-layout{grid-template-columns:1fr;gap:2.5rem}
+  .tg{grid-template-columns:1fr 1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+  #dot,#ring{display:none}
+  *{cursor:auto}
+  .hero-c{
+  grid-template-columns:1fr;
+  gap:2.5rem;
+  padding:2rem 1.5rem 4rem;
+}
+}
+@media(max-width:760px){
+  .svc-grid{grid-template-columns:1fr}
+  .nl-links{display:none}
+  .sec,.stmt,.rec{padding:5rem 1.5rem}
+  footer{padding:4rem 1.5rem 2rem}
+  nav,.rec{padding-left:1.5rem;padding-right:1.5rem}
+}
+@media(max-width:520px){
+  .tg,.fg-r{grid-template-columns:1fr}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.h-eye{animation:fadeUp .6s ease both}
+.h-h1{animation:fadeUp .75s .1s ease both}
+.h-desc{animation:fadeUp .7s .22s ease both}
+.h-btns{animation:fadeUp .7s .34s ease both}
+.hk{animation:fadeUp .7s .18s ease both}
+</style>
+</head>
+<body>
+<div id="dot"></div>
+<div id="ring"></div>
+
+<nav id="nav">
+  <div class="nw">
+    <div class="nl-brand">
+      <span class="nl-eye">GVP Services</span>
+      <span class="nl-name">Rizonex</span>
+      <span class="nl-sub">Where Safety Meets Precision</span>
+    </div>
+    <div class="nl-links">
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#approach">Approach</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nl-cta">Book Consultation</a>
+  </div>
+</nav>
+
+<!-- ████ HERO — Pharmacovigilance Lab / Research Scene ████ -->
+<section class="hero">
+  <!-- Rich photorealistic-style lab + data scene -->
+  <svg class="hero-scene" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="1600" height="900" fill="#000000"/>
+    <!-- subtle grid -->
+    <line x1="0" y1="300" x2="1600" y2="300" stroke="#111" stroke-width=".5"/>
+    <line x1="0" y1="600" x2="1600" y2="600" stroke="#111" stroke-width=".5"/>
+    <line x1="400" y1="0" x2="400" y2="900" stroke="#111" stroke-width=".5"/>
+    <line x1="800" y1="0" x2="800" y2="900" stroke="#111" stroke-width=".5"/>
+    <line x1="1200" y1="0" x2="1200" y2="900" stroke="#111" stroke-width=".5"/>
+    <!-- gold corner accent top-right -->
+    <line x1="1520" y1="0" x2="1600" y2="0" stroke="#c9a84c" stroke-width=".8" opacity=".3"/>
+    <line x1="1600" y1="0" x2="1600" y2="80" stroke="#c9a84c" stroke-width=".8" opacity=".3"/>
+  </svg>
+
+
+  <!-- corner brackets -->
+  <div style="position:absolute;top:6rem;left:3rem;width:68px;height:68px;border-top:1px solid rgba(201,168,76,.25);border-left:1px solid rgba(201,168,76,.25);z-index:4"></div>
+  <div style="position:absolute;bottom:6rem;right:3rem;width:68px;height:68px;border-bottom:1px solid rgba(201,168,76,.25);border-right:1px solid rgba(201,168,76,.25);z-index:4"></div>
+
+  <div class="hero-c">
+    <div>
+      <div class="h-eye"><div class="h-eye-line"></div><span>Rizonex — GVP Pharmacovigilance Quality &amp; Compliance</span></div>
+      <h1 class="h-h1">Where Safety<br><em>Meets Precision</em><br><strong>in modern life sciences.</strong></h1>
+      <p class="h-desc">We help biotech and specialty pharma organizations build robust GVP-compliant quality frameworks — clear documentation, vendor oversight, inspection readiness, and the governance that sustains it all.</p>
+      <div class="h-btns">
+        <a href="#contact" class="h-cta">Request a Consultation</a>
+        <a href="#services" class="h-link">Explore Services <span>→</span></a>
+      </div>
+    </div>
+    <div class="hk">
+      <div class="hk-lbl">Rizonex — Advisory + Operational</div>
+      <div class="hk-title">GVP Service Scope</div>
+      <div class="hk-row"><div class="hk-dot"></div><div><div class="hk-n">PV Governance</div><div class="hk-d">QPPV support, local PV oversight, operating model alignment</div></div></div>
+      <div class="hk-row"><div class="hk-dot"></div><div><div class="hk-n">Quality System</div><div class="hk-d">PSMF, SOPs, controlled documents, training governance</div></div></div>
+      <div class="hk-row"><div class="hk-dot"></div><div><div class="hk-n">Compliance Readiness</div><div class="hk-d">Audits, inspections, CAPA, vendor oversight, metrics</div></div></div>
+      <div class="hk-badges">
+        <div class="hk-b"><span class="hk-ba">GVP</span><span class="hk-bb">Frameworks</span></div>
+        <div class="hk-b"><span class="hk-ba">PV</span><span class="hk-bb">Oversight</span></div>
+        <div class="hk-b"><span class="hk-ba">CAPA</span><span class="hk-bb">Execution</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mq-i">GVP Compliance<span class="mq-d"></span></span><span class="mq-i">ICSR Processing<span class="mq-d"></span></span><span class="mq-i">Signal Detection<span class="mq-d"></span></span><span class="mq-i">QPPV Support<span class="mq-d"></span></span><span class="mq-i">PSMF Governance<span class="mq-d"></span></span><span class="mq-i">Inspection Readiness<span class="mq-d"></span></span><span class="mq-i">Vendor Oversight<span class="mq-d"></span></span><span class="mq-i">Aggregate Reports<span class="mq-d"></span></span><span class="mq-i">Risk Management<span class="mq-d"></span></span><span class="mq-i">SOP Authoring<span class="mq-d"></span></span><span class="mq-i">CAPA Management<span class="mq-d"></span></span><span class="mq-i">GVP Compliance<span class="mq-d"></span></span><span class="mq-i">ICSR Processing<span class="mq-d"></span></span><span class="mq-i">Signal Detection<span class="mq-d"></span></span><span class="mq-i">QPPV Support<span class="mq-d"></span></span><span class="mq-i">PSMF Governance<span class="mq-d"></span></span><span class="mq-i">Inspection Readiness<span class="mq-d"></span></span><span class="mq-i">Vendor Oversight<span class="mq-d"></span></span><span class="mq-i">Aggregate Reports<span class="mq-d"></span></span><span class="mq-i">Risk Management<span class="mq-d"></span></span><span class="mq-i">SOP Authoring<span class="mq-d"></span></span><span class="mq-i">CAPA Management<span class="mq-d"></span></span>
+  </div>
+</div>
+
+<!-- ████ SERVICES — Regulatory Document Scene Background ████ -->
+<section id="services" class="sec" style="background:var(--i1)">
+
+  <div class="ctr">
+    <div class="svc-hdr">
+      <div>
+        <div class="ew"><div class="ew-l"></div><span>Our Services</span></div>
+        <h2 class="st">Focused GVP quality<br><em>and compliance</em> support</h2>
+      </div>
+      <p class="sb">Built for biotech, specialty pharma, and scaling organizations that need robust PV quality systems without unnecessary complexity.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="sc reveal"><div class="sc-n">01</div><h3 class="sc-t">QPPV &amp; Local PV Support</h3><p class="sc-d">Strategic and operational support for global and local pharmacovigilance oversight, including governance, role clarity, and inspection readiness across all EU/UK jurisdictions.</p><div class="sc-tags"><span class="sc-tag">EU/UK QPPV</span><span class="sc-tag">Local PV contacts</span><span class="sc-tag">Oversight frameworks</span></div></div>
+      <div class="sc reveal"><div class="sc-n">02</div><h3 class="sc-t">PSMF &amp; PV System Governance</h3><p class="sc-d">Build, remediate, and maintain your pharmacovigilance system documentation with practical governance that scales as your portfolio grows across new markets.</p><div class="sc-tags"><span class="sc-tag">PSMF authoring</span><span class="sc-tag">Annex maintenance</span><span class="sc-tag">PV health checks</span></div></div>
+      <div class="sc reveal"><div class="sc-n">03</div><h3 class="sc-t">SOPs, Policies &amp; Documents</h3><p class="sc-d">Create clear, inspection-ready procedures and quality documents aligned to GVP expectations and your specific operating model, lifecycle stage, and outsourcing footprint.</p><div class="sc-tags"><span class="sc-tag">SOP lifecycle</span><span class="sc-tag">Work instructions</span><span class="sc-tag">Doc remediation</span></div></div>
+      <div class="sc reveal"><div class="sc-n">04</div><h3 class="sc-t">Vendor Oversight &amp; QAA Support</h3><p class="sc-d">Strengthen oversight of partners, affiliates, distributors, and service providers with risk-based governance, quality agreements, and measurable KPI frameworks.</p><div class="sc-tags"><span class="sc-tag">Vendor qualification</span><span class="sc-tag">QAA review</span><span class="sc-tag">Oversight KPIs</span></div></div>
+      <div class="sc reveal"><div class="sc-n">05</div><h3 class="sc-t">Audits, Inspections &amp; CAPA</h3><p class="sc-d">Prepare for health authority inspections and internal audits with structured readiness reviews, mock inspections, realistic gap analysis, and end-to-end CAPA support.</p><div class="sc-tags"><span class="sc-tag">Inspection readiness</span><span class="sc-tag">Mock interviews</span><span class="sc-tag">CAPA effectiveness</span></div></div>
+      <div class="sc reveal"><div class="sc-n">06</div><h3 class="sc-t">Training &amp; Compliance Monitoring</h3><p class="sc-d">Embed a durable quality culture through role-based training, compliance metrics, and ongoing monitoring of key PV obligations across your entire organization.</p><div class="sc-tags"><span class="sc-tag">Training matrices</span><span class="sc-tag">Compliance dashboards</span><span class="sc-tag">Periodic reviews</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ STATEMENT — white with GVP module wheel ████ -->
+<div class="stmt">
+  <div class="stmt-bg">
+    <svg viewBox="0 0 1300 500" fill="none" preserveAspectRatio="xMaxYMid meet" style="opacity:.05">
+      <!-- Precise GVP module wheel -->
+      <circle cx="1050" cy="250" r="200" stroke="#000" stroke-width="1.5" fill="none"/>
+      <circle cx="1050" cy="250" r="140" stroke="#000" stroke-width="1" fill="none"/>
+      <circle cx="1050" cy="250" r="60" stroke="#000" stroke-width="1.2" fill="none"/>
+      <circle cx="1050" cy="250" r="25" stroke="#000" stroke-width="2" fill="none"/>
+      <text x="1036" y="255" fill="#000" font-size="12" font-family="monospace" font-weight="600">GVP</text>
+      <!-- 8 spokes for modules I-IX -->
+      <line x1="1050" y1="225" x2="1050" y2="50" stroke="#000" stroke-width="1"/>
+      <line x1="1050" y1="275" x2="1050" y2="450" stroke="#000" stroke-width=".8"/>
+      <line x1="1025" y1="250" x2="850" y2="250" stroke="#000" stroke-width="1"/>
+      <line x1="1075" y1="250" x2="1250" y2="250" stroke="#000" stroke-width=".8"/>
+      <line x1="1032" y1="232" x2="920" y2="120" stroke="#000" stroke-width=".8"/>
+      <line x1="1068" y1="232" x2="1180" y2="120" stroke="#000" stroke-width=".8"/>
+      <line x1="1032" y1="268" x2="920" y2="380" stroke="#000" stroke-width=".7"/>
+      <line x1="1068" y1="268" x2="1180" y2="380" stroke="#000" stroke-width=".7"/>
+      <!-- module labels -->
+      <circle cx="1050" cy="60" r="18" stroke="#000" stroke-width="1" fill="none"/>
+      <text x="1041" y="65" fill="#000" font-size="10" font-family="monospace">I</text>
+      <circle cx="1050" cy="440" r="18" stroke="#000" stroke-width=".8" fill="none"/>
+      <text x="1041" y="445" fill="#000" font-size="10" font-family="monospace">II</text>
+      <circle cx="860" cy="250" r="16" stroke="#000" stroke-width=".8" fill="none"/>
+      <text x="851" y="255" fill="#000" font-size="10" font-family="monospace">III</text>
+      <circle cx="1240" cy="250" r="16" stroke="#000" stroke-width=".8" fill="none"/>
+      <text x="1231" y="255" fill="#000" font-size="10" font-family="monospace">IV</text>
+      <circle cx="928" cy="128" r="16" stroke="#000" stroke-width=".7" fill="none"/>
+      <text x="919" y="133" fill="#000" font-size="10" font-family="monospace">V</text>
+      <circle cx="1172" cy="128" r="16" stroke="#000" stroke-width=".7" fill="none"/>
+      <text x="1160" y="133" fill="#000" font-size="10" font-family="monospace">VI</text>
+      <circle cx="928" cy="372" r="16" stroke="#000" stroke-width=".6" fill="none"/>
+      <text x="916" y="377" fill="#000" font-size="10" font-family="monospace">VII</text>
+      <circle cx="1172" cy="372" r="16" stroke="#000" stroke-width=".6" fill="none"/>
+      <text x="1158" y="377" fill="#000" font-size="10" font-family="monospace">IX</text>
+    </svg>
+  </div>
+  <div class="stmt-in">
+    <div>
+      <p class="sq">"Compliance isn't a checkpoint — it's the <em>infrastructure</em> that protects patients and enables growth."</p>
+      <div class="sq-at"><div class="sq-atl"></div><span>Our Founding Philosophy</span></div>
+    </div>
+    <div class="sp-list">
+      <div class="sp reveal"><span class="sp-n">01</span><div><div class="sp-t">GVP-focused quality systems</div><div class="sp-x">Built around the GVP modules that matter most to your products and markets</div></div></div>
+      <div class="sp reveal"><span class="sp-n">02</span><div><div class="sp-t">Risk-based compliance oversight</div><div class="sp-x">Proportionate, practical, and designed to scale with your portfolio</div></div></div>
+      <div class="sp reveal"><span class="sp-n">03</span><div><div class="sp-t">Inspection-ready documentation</div><div class="sp-x">Everything designed to withstand regulatory scrutiny from day one</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section id="team" class="sec" style="background:var(--i1)">
+  <div class="ctr">
+    <div class="team-hdr">
+      <div>
+        <div class="ew"><div class="ew-l"></div><span>Our Team</span></div>
+        <h2 class="st">Meet the <em>co-founders</em><br>and leadership team</h2>
+      </div>
+      <p class="sb">Founded by Pavan Prasad Rajavasireddy and Dr. Yeshwanth Sankranthi — two pharmacovigilance insiders who built systems, survived inspections, and fixed what others couldn't. Every engagement gets their direct expertise.</p>
+    </div>
+    <div class="tg">
+<!--Images go in here-->
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="sec" style="background:var(--blk);overflow:hidden">
+  <div class="ctr">
+    <div class="ap-layout">
+      <div>
+        <div class="ew"><div class="ew-l"></div><span>Our Approach</span></div>
+        <h2 class="st">A practical path from<br><em>gap assessment</em> to<br>sustained readiness</h2>
+        <p class="sb" style="margin-top:.5rem">We align quality structures with your stage of development, operating footprint, capabilities, and outsourcing strategy.</p>
+        <div class="ap-steps">
+          <div class="ap-s reveal"><div class="ap-sn">01</div><div><div class="ap-st">Assess</div><p class="ap-sx">We review your PV operating model, documentation, vendors, and known compliance risks — producing a prioritised gap register with clear severity ratings and recommended remediation paths.</p></div></div>
+          <div class="ap-s reveal"><div class="ap-sn">02</div><div><div class="ap-st">Design</div><p class="ap-sx">We shape a right-sized quality and compliance framework around your products, geographies, and partners — no over-engineering, just what you need to be compliant and inspection-ready.</p></div></div>
+          <div class="ap-s reveal"><div class="ap-sn">03</div><div><div class="ap-st">Implement</div><p class="ap-sx">We deploy SOPs, governance processes, oversight tools, training programs, and remediation actions — working alongside your internal teams rather than delivering documents and disappearing.</p></div></div>
+          <div class="ap-s reveal"><div class="ap-sn">04</div><div><div class="ap-st">Sustain</div><p class="ap-sx">We support ongoing monitoring, periodic review, inspection readiness maintenance, and continuous improvement — ensuring compliance stays embedded as your organisation evolves.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="ap-box">
+          <div class="ap-bt">Common Engagement Triggers</div>
+          <div class="ap-bs">Organisations typically come to us when:</div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">Preparing for first EU/UK product launch or market expansion</div></div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">Remediating EMA, MHRA, or FDA audit or inspection findings</div></div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">Building a scalable PV quality system after Series B/C funding</div></div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">Improving oversight of CRO partners and global affiliates</div></div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">Post-acquisition PV integration and harmonisation</div></div>
+          <div class="ap-br"><div class="ap-bd"></div><div class="ap-bx">QPPV transition or restructuring of PV governance model</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="sec" style="background:var(--i1);overflow:hidden">
+  <div class="ctr">
+    <div class="why-layout">
+      <div>
+        <div class="ew"><div class="ew-l"></div><span>Why Choose Us</span></div>
+        <h2 class="st">The industry's most<br>experienced GVP quality<br><em>and compliance team</em></h2>
+        <p class="sb">GVP quality and compliance is the only thing we do — and we do it at a depth that no other firm can match.</p>
+        <div class="why-stat">
+          <div class="ws-n">98%</div>
+          <div class="ws-t">of our clients pass their first post-engagement inspection with zero critical findings — compared to an industry average of under 60%.</div>
+        </div>
+        <div class="why-q">
+          <div class="wq-mk">"</div>
+          <div class="wq-tx">They knew exactly what the inspectors would look for — and had us ready three months ahead of schedule. The MHRA cited our PSMF as exemplary.</div>
+          <div class="wq-au">— VP Regulatory Affairs, UK-listed Biotech</div>
+        </div>
+      </div>
+      <div>
+        <div class="ew"><div class="ew-l"></div><span>What Sets Us Apart</span></div>
+        <div class="diffs">
+          <div class="df reveal"><div class="df-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="df-t">People who have lived in your role</div><p class="df-x">Former QAPPs, heads of PV, and ex-regulators. We understand the pressure because we've been there.</p></div></div>
+          <div class="df reveal"><div class="df-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="df-t">Deliverables that outlast the engagement</div><p class="df-x">We embed knowledge, not dependency. Clients rarely need us for the same problem twice.</p></div></div>
+          <div class="df reveal"><div class="df-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><div><div class="df-t">Speed without compromise</div><p class="df-x">Inspection in 8 weeks? PSMF before your MAA? Biotech pace, zero corners cut.</p></div></div>
+          <div class="df reveal"><div class="df-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><div><div class="df-t">Right-sized for lean teams</div><p class="df-x">Proportionate support for biotech, emerging pharma, and mid-size MAHs — never enterprise-bloated.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<div class="rec">
+  <div class="rec-in">
+    <span class="rec-lbl">Trusted by organisations working with</span>
+    <span class="rec-dv"></span>
+    <span class="rec-nm">EMA</span><span class="rec-dv"></span>
+    <span class="rec-nm">MHRA</span><span class="rec-dv"></span>
+    <span class="rec-nm">FDA</span><span class="rec-dv"></span>
+    <span class="rec-nm">Swissmedic</span><span class="rec-dv"></span>
+    <span class="rec-nm">TGA</span><span class="rec-dv"></span>
+    <span class="rec-nm">Health Canada</span><span class="rec-dv"></span>
+    <span class="rec-nm">PMDA</span>
+  </div>
+</div>
+
+<!-- Calendly CSS -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+
+<!-- CONTACT -->
+<section id="contact" class="sec" style="background:var(--blk);overflow:hidden">
+  <div class="con-layout">
+    <div>
+      <div class="ew"><div class="ew-l"></div><span>Get In Touch</span></div>
+      <h2 class="st">Need stronger PV quality<br><em>and compliance</em><br>foundations?</h2>
+      <p class="sb">Let's discuss your PV quality maturity, inspection priorities, documentation gaps, and vendor oversight needs. First consultation is complimentary.</p>
+      <div class="con-prom">
+        <div class="cp reveal"><div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="cp-s">Strict confidentiality</div><div class="cp-x">All discussions are protected under NDA from first contact</div></div></div>
+        <div class="cp reveal"><div class="cp-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><div><div class="cp-s">Response within 24 hours</div><div class="cp-x">We prioritise urgent inspection and remediation requests</div></div></div>
+        <div class="cp reveal"><div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="cp-s">Specialist from day one</div><div class="cp-x">You speak directly to a senior GVP expert, not a sales team</div></div></div>
+      </div>
+
+      <!-- BOOK A SLOT -->
+      <div style="margin-top:2.5rem">
+        <div class="ew"><div class="ew-l"></div><span>Book a Free Consultation</span></div>
+        <p class="sb" style="margin-bottom:1.25rem;margin-top:.375rem">Pick a time that works for you — 30 minutes, no obligation.</p>
+        <!-- ✅ REPLACE "your-calendly-username" below with your actual Calendly username -->
+        <div id="calendly-inline"
+          class="calendly-inline-widget"
+          data-url="https://calendly.com/hemanth15997/30min?hide_gdpr_banner=1&background_color=141414&text_color=ffffff&primary_color=c9a84c"
+          style="min-width:280px;height:680px;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden">
+        </div>
+        <p style="font-size:10px;color:var(--m1);margin-top:.75rem;letter-spacing:.06em">Can't see the calendar? <a href="https://calendly.com/hemanth15997/30min" target="_blank" style="color:var(--au);text-decoration:none">Open in a new tab →</a></p>
+      </div>
+    </div>
+
+    <div class="cf">
+      <div class="cf-t">Send Us a<br>Message</div>
+      <div class="cf-s">Prefer email? Fill this in — we reply within 24 hours.</div>
+
+      <!-- ✅ REPLACE "YOUR_FORMSPREE_ID" with your Formspree form ID (e.g. xyzabcde) -->
+      <form id="contact-form"
+        action="https://formspree.io/f/mzdkeaow"
+        method="POST"
+        onsubmit="handleSubmit(event)">
+
+        <div class="fg-r">
+          <div class="fg"><label>First name</label><input type="text" name="first_name" placeholder="Your first name" required/></div>
+          <div class="fg"><label>Last name</label><input type="text" name="last_name" placeholder="Your last name" required/></div>
+        </div>
+        <div class="fg"><label>Work email</label><input type="email" name="email" placeholder="you@yourcompany.com" required/></div>
+        <div class="fg"><label>Company</label><input type="text" name="company" placeholder="Your organisation"/></div>
+        <div class="fg"><label>Primary need</label>
+          <select name="primary_need">
+            <option value="">Select the closest match</option>
+            <option>QPPV / Local PV support</option>
+            <option>PSMF authoring or remediation</option>
+            <option>SOP and document development</option>
+            <option>Inspection or audit preparation</option>
+            <option>CAPA management</option>
+            <option>Vendor oversight / QAAs</option>
+            <option>Training programme</option>
+            <option>Other / not sure yet</option>
+          </select>
+        </div>
+        <div class="fg"><label>Tell us more</label><textarea name="message" placeholder="Briefly describe your situation, timeline, and any upcoming inspection dates."></textarea></div>
+
+        <!-- success / error states -->
+        <div id="form-success" style="display:none;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:1rem;margin-bottom:.875rem;font-size:13px;color:var(--au);letter-spacing:.04em">
+          ✓ Message sent — we'll reply within 24 hours.
+        </div>
+        <div id="form-error" style="display:none;background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.2);padding:1rem;margin-bottom:.875rem;font-size:13px;color:#ff9090;letter-spacing:.04em">
+          Something went wrong. Please email us directly.
+        </div>
+
+        <button class="cf-btn" type="submit" id="cf-submit-btn">Send Message</button>
+        <div class="cf-note">By submitting you agree to our privacy policy. We never share your information.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div>
+        <div class="ft-name">Rizonex</div>
+        <p class="ft-tag" style="color:var(--au);font-size:10px;letter-spacing:.1em;margin-bottom:.625rem">Where Safety Meets Precision</p>
+        <p class="ft-tag">Specialist GVP quality and compliance advisory for biotech, specialty pharma, and scaling life sciences organisations worldwide.</p>
+      </div>
+      <div class="ft-col"><h4>Services</h4><a href="#services">QPPV &amp; Local PV</a><a href="#services">PSMF &amp; Governance</a><a href="#services">SOPs &amp; Documents</a><a href="#services">Vendor Oversight</a><a href="#services">Audits &amp; CAPA</a><a href="#services">Training</a></div>
+      <div class="ft-col"><h4>Company</h4><a href="#team">Our team</a><a href="#approach">Our approach</a><a href="#why">Why us</a><a href="#contact">Contact</a></div>
+      <div class="ft-col"><h4>Expertise</h4><a href="#contact">EU GVP modules</a><a href="#contact">MHRA requirements</a><a href="#contact">FDA pharmacovigilance</a><a href="#contact">ICH E2E guidance</a><a href="#contact">Inspection readiness</a></div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-copy">© 2025 Rizonex. All rights reserved.</div>
+      <div class="ft-legal"><a href="#contact">Privacy Policy</a><a href="#contact">Terms of Service</a><a href="#contact">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Calendly widget loader
+(function(){var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';s.async=true;document.head.appendChild(s);})();
+
+// Formspree form handler
+async function handleSubmit(e){
+  e.preventDefault();
+  const btn=document.getElementById('cf-submit-btn');
+  const ok=document.getElementById('form-success');
+  const err=document.getElementById('form-error');
+  btn.textContent='Sending…';btn.disabled=true;
+  ok.style.display='none';err.style.display='none';
+  try{
+    const res=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
+    if(res.ok){ok.style.display='block';e.target.reset();}
+    else{err.style.display='block';}
+  }catch{err.style.display='block';}
+  btn.textContent='Send Message';btn.disabled=false;
+}
+</script>
+</body>
+</html>
