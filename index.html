@@ -205,6 +205,14 @@ nav.on{background:rgba(0,0,0,.93);backdrop-filter:blur(18px);border-bottom-color
 .rec-dv{width:1px;height:16px;background:rgba(255,255,255,.08)}
 .rec-nm{font-size:12.5px;color:var(--m2);letter-spacing:.1em;cursor:default;transition:color .2s}
 .rec-nm:hover{color:var(--wht)}
+.rec-nm a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.rec-nm a:hover {
+    text-decoration: underline; /* optional: subtle hover effect */
+}
 
 /* CONTACT */
 .con-layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 490px;gap:6.5rem;align-items:start;position:relative;z-index:2}
@@ -442,8 +450,52 @@ footer{background:var(--i2);border-top:1px solid rgba(255,255,255,.06);padding:5
       </div>
       <p class="sb">Founded by Pavan Prasad Rajavasireddy and Dr. Yeshwanth Sankranthi — two pharmacovigilance insiders who built systems, survived inspections, and fixed what others couldn't. Every engagement gets their direct expertise.</p>
     </div>
-    <div class="tg">
-<!--Images go in here-->
+    <!--images go in here-->
+	<div class="tg">
+      <!-- Pavan — Co-Founder -->
+      <div class="tc reveal">
+	  <!--Picture goes here-->
+        <div class="tc-i">
+          <div class="tc-n">Pavan Prasad Rajavasireddy</div>
+          <div class="tc-r">Founder &amp; Principal Consultant</div>
+          <p class="tc-b">A seasoned pharmacovigilance leader specialising in PV Quality Management Systems, audits &amp; inspections, and vendor oversight. Deep expertise in building inspection-ready PV governance frameworks for biotech and specialty pharma organisations across global markets.</p>
+          <div class="tc-cr"><span class="tc-c">PV QMS</span><span class="tc-c">Audits</span><span class="tc-c">Vendor Oversight</span><span class="tc-c">Safety Governance</span></div>
+          <a href="#contact" class="tc-lk"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>Connect</a>
+        </div>
+      </div>
+      <!-- Dr. Yeshwanth — Co-Founder -->
+      <div class="tc reveal">
+	  <!--Picture goes here-->
+        <div class="tc-i">
+          <div class="tc-n">Dr. Yeshwanth Sankranthi</div>
+          <div class="tc-r">Co-Founder &amp; Senior PV Consultant</div>
+          <p class="tc-b">A global pharmacovigilance and clinical research leader with expertise spanning drug safety, GVP compliance, QPPV support, signal management, and inspection readiness. Recognised GVP audit expert with a strong track record in real-world evidence and PV lifecycle management.</p>
+          <div class="tc-cr"><span class="tc-c">Drug Safety</span><span class="tc-c">QPPV Support</span><span class="tc-c">Signal Mgmt</span><span class="tc-c">RWE</span><span class="tc-c">GVP Audit</span></div>
+          <a href="#contact" class="tc-lk"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>Connect</a>
+        </div>
+      </div>
+      <!-- Dr. Maha Lakshmi -->
+      <div class="tc reveal">
+	  <!--Picture goes here-->
+        <div class="tc-i">
+          <div class="tc-n">Dr. Maha Lakshmi Elluri</div>
+          <div class="tc-r">Global Safety Director &amp; EEA/UK QPPV</div>
+          <p class="tc-b">A distinguished global safety leader and qualified EEA &amp; UK QPPV. Combines MD, MBA, and project management expertise to lead complex PV programmes, safety governance, and regulatory audit engagements at international scale.</p>
+          <div class="tc-cr"><span class="tc-c">MD</span><span class="tc-c">MBA</span><span class="tc-c">MSc</span><span class="tc-c">EU/UK QPPV</span><span class="tc-c">Audit Expert</span></div>
+          <a href="#contact" class="tc-lk"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>Connect</a>
+        </div>
+      </div>
+      <!-- Akhil -->
+      <div class="tc reveal">
+	  <!--Picture goes here-->
+         <div class="tc-i">
+          <div class="tc-n">Akhil Sunkari</div>
+          <div class="tc-r">Regulatory Affairs Expert</div>
+          <p class="tc-b">A highly credentialled regulatory affairs specialist with dual expertise in pharmacy and regulatory compliance. Advises on global regulatory strategy, submission planning, and the intersection of pharmacovigilance and regulatory requirements for biotech and pharma companies seeking market authorisation.</p>
+          <div class="tc-cr"><span class="tc-c">PharmD</span><span class="tc-c">MS</span><span class="tc-c">RAC</span><span class="tc-c">Reg Strategy</span></div>
+          <a href="#contact" class="tc-lk"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>Connect</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -515,18 +567,18 @@ footer{background:var(--i2);border-top:1px solid rgba(255,255,255,.06);padding:5
   <div class="rec-in">
     <span class="rec-lbl">Trusted by organisations working with</span>
     <span class="rec-dv"></span>
-    <span class="rec-nm">EMA</span><span class="rec-dv"></span>
-    <span class="rec-nm">MHRA</span><span class="rec-dv"></span>
-    <span class="rec-nm">FDA</span><span class="rec-dv"></span>
-    <span class="rec-nm">Swissmedic</span><span class="rec-dv"></span>
-    <span class="rec-nm">TGA</span><span class="rec-dv"></span>
-    <span class="rec-nm">Health Canada</span><span class="rec-dv"></span>
-    <span class="rec-nm">PMDA</span>
+	<span class="rec-nm"><a href="https://www.ema.europa.eu/en/homepage" target="_blank">EMA</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency" target="_blank">MHRA</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.fda.gov/" target="_blank">FDA</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.swissmedic.ch/swissmedic/en/home.html" target="_blank">Swissmedic</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.tga.gov.au/" target="_blank">TGA</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.canada.ca/en/health-canada.html" target="_blank">Health Canada</a></span><span class="rec-dv"></span>
+	<span class="rec-nm"><a href="https://www.pmda.go.jp/english/" target="_blank">PMDA</a></span>
   </div>
 </div>
 
 <!-- Calendly CSS -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+<!--<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>-->
 
 <!-- CONTACT -->
 <section id="contact" class="sec" style="background:var(--blk);overflow:hidden">
@@ -545,13 +597,13 @@ footer{background:var(--i2);border-top:1px solid rgba(255,255,255,.06);padding:5
       <div style="margin-top:2.5rem">
         <div class="ew"><div class="ew-l"></div><span>Book a Free Consultation</span></div>
         <p class="sb" style="margin-bottom:1.25rem;margin-top:.375rem">Pick a time that works for you — 30 minutes, no obligation.</p>
-        <!-- ✅ REPLACE "your-calendly-username" below with your actual Calendly username -->
-        <div id="calendly-inline"
-          class="calendly-inline-widget"
-          data-url="https://calendly.com/hemanth15997/30min?hide_gdpr_banner=1&background_color=141414&text_color=ffffff&primary_color=c9a84c"
-          style="min-width:280px;height:680px;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden">
-        </div>
-        <p style="font-size:10px;color:var(--m1);margin-top:.75rem;letter-spacing:.06em">Can't see the calendar? <a href="https://calendly.com/hemanth15997/30min" target="_blank" style="color:var(--au);text-decoration:none">Open in a new tab →</a></p>
+      <!-- Cal inline embed code begins -->
+<div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
+<script type="text/javascript">
+
+  </script>
+  <!-- Cal inline embed code ends -->
+        <p style="font-size:10px;color:var(--m1);margin-top:.75rem;letter-spacing:.06em">Can't see the calendar? <a href="https://cal.com/rizonex-bio-mtmyvn/30min" target="_blank" style="color:var(--au);text-decoration:none">Open in a new tab →</a></p>
       </div>
     </div>
 
@@ -561,7 +613,7 @@ footer{background:var(--i2);border-top:1px solid rgba(255,255,255,.06);padding:5
 
       <!-- ✅ REPLACE "YOUR_FORMSPREE_ID" with your Formspree form ID (e.g. xyzabcde) -->
       <form id="contact-form"
-        action="https://formspree.io/f/mzdkeaow"
+        action="https://formspree.io/f/mlganlpj"
         method="POST"
         onsubmit="handleSubmit(event)">
 
@@ -628,9 +680,6 @@ window.addEventListener('scroll',()=>document.getElementById('nav').classList.to
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Calendly widget loader
-(function(){var s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';s.async=true;document.head.appendChild(s);})();
-
 // Formspree form handler
 async function handleSubmit(e){
   e.preventDefault();
@@ -646,6 +695,17 @@ async function handleSubmit(e){
   }catch{err.style.display='block';}
   btn.textContent='Send Message';btn.disabled=false;
 }
+
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://app.cal.com"});
+
+  Cal.ns["30min"]("inline", {
+    elementOrSelector:"#my-cal-inline-30min",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"dark"},
+    calLink: "rizonex-bio-mtmyvn/30min",
+  });
+
+  Cal.ns["30min"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 </body>
 </html>
